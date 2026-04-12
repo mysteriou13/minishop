@@ -1,10 +1,11 @@
-
+import Carrousel from "./components/Header/Carrousel/Carousel";
 
 export default function Home() {
   return (
     <div >
       <main >
-         page home
+         
+          <Carrousel/>
       </main>
     </div>
   );
