@@ -17,6 +17,13 @@ const initialState:State = [
     type: "email",
     value: ""
   },
+
+  {
+    name: "password",
+    label: "password",
+    type: "password",
+    value: "",
+  },
 ],
 
 [
@@ -49,6 +56,37 @@ const initialState:State = [
     type: "text",
     value: "",
   },
+],
+[
+   {
+    name: "ville",
+    label: "ville",
+    type: "text",
+    value: "",
+   },
+  {
+    name: "code postal",
+    label: "code postal",
+    type: "text",
+    value: "",
+  },
+
+  {
+    name: "pays",
+    label: "pays",
+    type: "text",
+    value: "",
+  },
+ 
+],
+
+[
+{
+  name:"region"
+  ,label:"region"
+  ,type:"text"
+  ,value:""
+}
 ]
 ];
 
@@ -90,7 +128,7 @@ export default function FromInscription() {
 
   return (
     <form onSubmit={handleSubmit} >
-      <h2>Formulaire</h2>
+      <h2>Formulaire d'inscription</h2>
       {state.map((group,index) => (
        <LineInput key={index} dataInput={group} handleChange={handleChange}/>
       ))}
