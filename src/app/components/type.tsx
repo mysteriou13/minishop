@@ -1,4 +1,5 @@
 export  type InputProps = {
+  name: string;
   label: string;
   type: string;
   value: string;
