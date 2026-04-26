@@ -2,11 +2,10 @@
 import { useReducer } from "react";
 import LineInput from "../LineInput/LineInput";
 import { formReducer } from "../../Utilis";
-import { FromInscriptionProps,formReducerAction } from "../type";
+import { FromInscriptionProps, formReducerAction } from "../type";
 
-export default function From({ tapinput, title }: FromInscriptionProps) {
+export default function From({ tapinput, title,fromdata, onSubmit }: FromInscriptionProps) {
   const [state, dispatch] = useReducer(formReducer, tapinput);
-
 
   /*change data input*/
   const handleChangeInput = (name: string, value: string) => {
@@ -15,19 +14,33 @@ export default function From({ tapinput, title }: FromInscriptionProps) {
       payload: { name, value },
     };
     dispatch(action);
+
   };
 
   /*submit form*/
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Data submitted:", state);
+     let flatState: { [key: string]: string } = {};
+    state.forEach((group) => {
+      group.forEach((input) => {
+        flatState[input.name] = input.value;
+      });
+    });
+
+    console.log("flatstate",flatState);
+
+    fromdata(flatState);
+    onSubmit();
+     
   };
+
 
 
   return (
     <form onSubmit={handleSubmit} >
       <h2>{title}</h2>
       {state.map((group, index) => (
+      
         <LineInput
           key={index}
           dataInput={group}

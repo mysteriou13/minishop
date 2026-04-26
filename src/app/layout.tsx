@@ -2,8 +2,7 @@ import Header from "./components/Header/Header";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-
+import Provide from "./rtk/provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,9 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header/>
-        {children}
-        </body>
+        <Header />
+        <Provide>{children}</Provide>
+      </body>
     </html>
   );
 }
