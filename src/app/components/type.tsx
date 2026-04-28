@@ -1,16 +1,20 @@
 export type StateInputForm = InputItem[][];
 
+export interface fromDataArray {
+  [key: string]: string;
+}
+
 export interface Fromdata{
-  nameData: any;
-  valueData: any;
+  nameData: string;
+  valueData: string;
 }
 
 export interface FromInscriptionProps  {
   title:string;
   tapinput: StateInputForm;
 
-   fromdata: (data:any) => void;
-   onSubmit: () => void;
+  fromdata?: (data: fromDataArray) => void;
+  onSubmit?: (data: fromDataArray) => void;
 }
 
 export interface InputItem  {

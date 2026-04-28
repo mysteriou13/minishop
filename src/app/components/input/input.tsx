@@ -18,7 +18,7 @@ export default function Input({
         type={type}
         value={value}
         autoComplete={autoCompleteValue}
-        onChange={(e) => handleChange(e.target.value)}
+        onChange={(e) => handleChange(e.currentTarget.value)}
       />
     </div>
   );
