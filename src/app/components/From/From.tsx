@@ -65,12 +65,6 @@ export default function From({
       </button>
     </form>
     </div>
-
-
-    <div>
-      <pre>{JSON.stringify(flatState, null, 2)}</pre>
-    </div>
-
   </div>
 
   );
