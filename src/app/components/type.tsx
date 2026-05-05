@@ -10,9 +10,7 @@ export interface Fromdata{
 }
 
 export interface FromInscriptionProps  {
-  title:string;
   tapinput: StateInputForm;
-
   fromdata?: (data: fromDataArray) => void;
   onSubmit?: (data: fromDataArray) => void;
 }

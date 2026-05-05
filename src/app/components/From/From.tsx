@@ -5,7 +5,6 @@ import { formReducer } from "../../Utilis";
 import { FromInscriptionProps,fromDataArray, formReducerAction } from "../type";
 export default function From({
   tapinput,
-  title,
   fromdata,
   onSubmit,
 }: FromInscriptionProps) {
@@ -49,7 +48,7 @@ export default function From({
     <div>
     <div>
     <form onSubmit={handleSubmit}>
-      <h2>{title}</h2>
+   
       {state.map((group, index) => (
         <LineInput
           key={index}

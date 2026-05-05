@@ -19,15 +19,24 @@ export default function page() {
 
   return (
     <div>
-      <div>
-      page inscription
+      <div className="shadow-xl/30 
+       rounded-[20px]
+        bg-white 
+        w-[60%]
+        relative
+        left-[50%]
+        translate-x-[-50%]
+        p-10
+        mt-10
+        ">
+      <p className="font-bold text-[24px]">Inscription</p>
+
       { 
         showLoading == true && !isLoading? (
           <LoadingSpinner />
         ) :(
       <From
         tapinput={initialStateInscription}
-        title={"Formulaire d'inscription"}
         onSubmit={handleSubmit}
       />
         )
