@@ -11,9 +11,9 @@ export default function Input({
 
   return (
     <div className="mb-4 flex flex-col gap-2">
-      <label>{label}</label>{" "}
+      <label className="font-bold">{label}</label>{" "}
       <input
-        className="border border-black"
+        className="rounded-full border border-black shadow-xl/30"
         name={name}
         type={type}
         value={value}
