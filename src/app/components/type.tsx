@@ -1,5 +1,10 @@
 export type StateInputForm = InputItem[][];
 
+export type  LinePros = {
+    dataInput:InputItem[],
+    handleChange: (name:string, value:string) =>void
+}
+
 export interface fromDataArray {
   [key: string]: string;
 }

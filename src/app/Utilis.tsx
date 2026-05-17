@@ -101,7 +101,7 @@ export const initialStateInscription: StateInputForm = [
   ],
 ];
 
-/*reducer function*/
+/*reducer function for form*/
 export function formReducer(
   state: StateInputForm,
   action: ActionInscription,

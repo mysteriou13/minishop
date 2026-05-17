@@ -8,8 +8,8 @@ export default function Header() {
          <input type="search" id="first_name" className="bg-neutral-secondary-medium border " placeholder="John" required />
         </div>
         <div className="flex justify-between gap-5">
-          <div> <Link href = "/inscription" className="text-blue-500 underline">par encore client</Link></div> 
-          <div> <Link  href = "/connection"className="text-blue-500 underline">déjà client </Link></div> 
+          <div> <Link href = "/inscription" className="Link">par encore client</Link></div> 
+          <div> <Link  href = "/connection"className="Link">déjà client </Link></div> 
           <div>panier</div>
         </div>
       </div>

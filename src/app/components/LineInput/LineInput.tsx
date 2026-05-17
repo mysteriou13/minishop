@@ -1,10 +1,7 @@
 import { InputItem, InputProps } from "../type"
 import Input from "../input/input"
+import { LinePros } from "../type"
 
-type  LinePros = {
-    dataInput:InputItem[],
-    handleChange: (name:string, value:string) =>void
-}
 
 export default function LineInput({dataInput,handleChange}:LinePros) {
   return (

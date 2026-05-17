@@ -3,13 +3,11 @@ import { useMemo, useReducer } from "react";
 import LineInput from "../LineInput/LineInput";
 import { formReducer } from "../../Utilis";
 import { FromInscriptionProps,fromDataArray, formReducerAction } from "../type";
-export default function From({
-  tapinput,
-  fromdata,
-  onSubmit,
-}: FromInscriptionProps) {
-  const [state, dispatch] = useReducer(formReducer, tapinput);
 
+export default function From({  tapinput,fromdata,onSubmit}: FromInscriptionProps) {
+  const [state, dispatch] = useReducer(formReducer, tapinput);
+  
+  //flatten the state to get a single object with name-value pairs
   const flatState = useMemo<fromDataArray>(() => {
     const newFlatState: fromDataArray = {};
     state.forEach((group) => {
@@ -57,7 +55,7 @@ export default function From({
         />
       ))}
       <button
-        className=" bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full cursor-pointer"
+        className="button"
         type="submit"
       >
         envoyer
