@@ -1,6 +1,6 @@
 import Header from "./components/Header/Header";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import Footer from "./components/Footer/Footer";
 import "./globals.css";
 import Provide from "./rtk/provider";
 
@@ -19,6 +19,7 @@ export default function RootLayout({
       <body>
         <Header />
         <Provide>{children}</Provide>
+         <Footer/>
       </body>
     </html>
   );
