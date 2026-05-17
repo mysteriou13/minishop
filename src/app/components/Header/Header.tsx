@@ -1,7 +1,7 @@
 import Link from "next/link";
 export default function Header() {
   return (
-    <header>
+    <header >
       <div className="flex">
         <div>mini shop</div>
         <div>
