@@ -101,30 +101,6 @@ export const initialStateInscription: StateInputForm = [
   ],
 ];
 
-/*reducer function for form*/
-export function formReducer(
-  state: StateInputForm,
-  action: ActionInscription,
-): StateInputForm {
-  switch (action.type) {
-    case "CHANGE_INPUT":
-      return state.map((group) =>
-        group.map((input) =>
-          input.name === action.payload.name
-            ? { ...input, value: action.payload.value }
-            : input,
-        ),
-      );
-
-    case "RESET":
-      return state.map((group) =>
-        group.map((input) => ({ ...input, value: "" })),
-      );
-
-    default:
-      return state;
-  }
-}
 
 /* Submit handler for inscription form */
  export const handleSubmitInscription = (e: React.SubmitEvent, handleSubmit: () => void) => {

@@ -1,10 +1,34 @@
 "use client";
 import { useMemo, useReducer } from "react";
 import LineInput from "../LineInput/LineInput";
-import { formReducer } from "../../Utilis";
-import { FromInscriptionProps,fromDataArray, formReducerAction } from "../type";
+
+import { FromInscriptionProps,fromDataArray, formReducerAction, StateInputForm,ActionInscription } from "../type";
 
 export default function From({  tapinput,fromdata,onSubmit}: FromInscriptionProps) {
+   function formReducer(
+    state: StateInputForm,
+    action: ActionInscription,
+  ): StateInputForm {
+    switch (action.type) {
+      case "CHANGE_INPUT":
+        return state.map((group) =>
+          group.map((input) =>
+            input.name === action.payload.name
+              ? { ...input, value: action.payload.value }
+              : input,
+          ),
+        );
+  
+      case "RESET":
+        return state.map((group) =>
+          group.map((input) => ({ ...input, value: "" })),
+        );
+  
+      default:
+        return state;
+    }
+  }
+  
   const [state, dispatch] = useReducer(formReducer, tapinput);
   
   //flatten the state to get a single object with name-value pairs
