@@ -1,6 +1,4 @@
-import { StateInputForm } from "./components/type";
-import { ActionInscription } from "./components/type";
-
+import { StateInputForm } from "./type";
 
 export const initialStateConnection: StateInputForm = [
   [

@@ -2,7 +2,7 @@
 import From from "../components/From/From";
 import { initialStateInscription } from "../Utilis";
 import { useCreateUserMutation } from "../rtk/api/apiUser";
-import { fromDataArray } from "../components/type";
+import { fromDataArray } from "../type";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import { useState } from "react";
 export default function page() {
@@ -24,6 +24,7 @@ export default function page() {
        shadow-2xl/60 
        rounded-[20px]
         bg-white 
+        min-h-[70vh]
         w-[60vw]
         relative
         left-[50%]
@@ -34,11 +35,8 @@ export default function page() {
       >
         <p className="font-bold text-[24px]">Inscription</p>
 
-        {showLoading == true && !isLoading ? (
-          <LoadingSpinner />
-        ) : (
-          <From tapinput={initialStateInscription} onSubmit={handleSubmit} />
-        )}
+          <From tapinput={initialStateInscription} onSubmit={handleSubmit} Loading={showLoading}/>
+        
       </div>
     </div>
   );

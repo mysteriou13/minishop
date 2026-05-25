@@ -7,8 +7,8 @@ export default function LoadingSpinner() {
     w-[27vw]
     h-[27vw]
      absolute
-      left-[31vw]
-      top-[20vh]
+      left-[31%]
+      top-[10%]
     "
     >
     </div>

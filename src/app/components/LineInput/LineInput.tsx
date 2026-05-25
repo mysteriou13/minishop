@@ -1,6 +1,5 @@
-import { InputItem, InputProps } from "../type"
-import Input from "../input/input"
-import { LinePros } from "../type"
+import Input from "@/app/components/input/input";
+import { LinePros } from "@/app/type"
 
 
 export default function LineInput({dataInput,handleChange}:LinePros) {
@@ -13,9 +12,7 @@ export default function LineInput({dataInput,handleChange}:LinePros) {
                   label={data.label}
                   type={data.type}
                   value={data.value}
-                  handleChange={(value: string) =>
-                    handleChange(data.name, value)
-                  }
+                  handleChange={(name, value) => handleChange(name, value)}
                 />
         )}
     </div>

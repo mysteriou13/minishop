@@ -1,4 +1,4 @@
-import { InputProps } from "../type";
+import { InputProps } from "@/app/type";
 
 export default function Input({
   name,
@@ -18,7 +18,7 @@ export default function Input({
         type={type}
         value={value}
         autoComplete={autoCompleteValue}
-        onChange={(e) => handleChange(e.currentTarget.value)}
+        onChange={(e) => handleChange(name,e.currentTarget.value)}
       />
     </div>
   );

@@ -16,8 +16,8 @@ export interface Fromdata{
 
 export interface FromInscriptionProps  {
   tapinput: StateInputForm;
-  fromdata?: (data: fromDataArray) => void;
-  onSubmit?: (data: fromDataArray) => void;
+   Loading: boolean;
+  onSubmit: (data: fromDataArray) => void;
 }
 
 export interface InputItem  {
@@ -28,18 +28,8 @@ export interface InputItem  {
 };
 
 export  interface InputProps extends InputItem {
-  handleChange: (value: string) => void;
+  handleChange: (name:any,value: any) => void;
 };
-
-
- export interface formReducerAction {
-    type: "CHANGE_INPUT";
-    payload: {
-      name: string;
-      value: string;
-    };
-  }
-
 
 
 export type ActionInscription =
