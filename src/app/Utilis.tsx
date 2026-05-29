@@ -45,7 +45,7 @@ export const initialStateInscription: StateInputForm = [
     },
 
     {
-      name: "prénom",
+      name: "prenom",
       label: "prénom",
       type: "text",
       value: "",

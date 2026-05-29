@@ -1,37 +1,31 @@
 "use client";
 import { useState } from "react";
-import LineInput from "../LineInput/LineInput";
+import LineInput from "@/app/components/LineInput/LineInput";
 import LoaadingSpinner from "@/app/components/LoadingSpinner/LoadingSpinner";
-import { FromInscriptionProps,fromDataArray} from "../../type";
+import { FromProps} from "@/app/type";
 
-export default function From({ tapinput,Loading, onSubmit }: FromInscriptionProps) {
+export default function From({ tapinput,Loading, onSubmit, handleDataBack }: FromProps) {
 
   const [formGroups, setFormGroups] = useState(tapinput);
-
   //update data input
   const UpataDatainput = (nameinput: string, data: string) => {
     setFormGroups((prev) =>
       prev.map((group) =>
         group.map((input) =>
-          input.name === nameinput ? { ...input, value: data } : input,
+          input.name === nameinput ? { ...input, value: data } : input,     
         ),
       ),
     );
+    handleDataBack(nameinput, data);
   };
 
   /*submit form*/
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
     /*verif if input from if not empty*/
-    const hasEmptyInput = formGroups.flat().some((input) => !input.value);
-    
+    const hasEmptyInput = formGroups.flat().some((input) => !input.value);    
     if (!hasEmptyInput) {
-      const formData = formGroups.flat().reduce((acc, input) => {
-        acc[input.name] = input.value;
-        return acc;
-      }, {} as fromDataArray);
-      onSubmit(formData);
+      onSubmit();
     }
   };
 
@@ -44,7 +38,6 @@ export default function From({ tapinput,Loading, onSubmit }: FromInscriptionProp
               <LoaadingSpinner/>
              ) : (
           formGroups.map((group, index) => (
-       
               <LineInput
               key={index}
               dataInput={group}
@@ -58,7 +51,7 @@ export default function From({ tapinput,Loading, onSubmit }: FromInscriptionProp
             envoyer
           </button>
         </form>
-      
+    
       </div>
     </div>
   );

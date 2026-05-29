@@ -1,5 +1,10 @@
 export type StateInputForm = InputItem[][];
 
+  export interface databack{
+  name: string;
+  value: string;
+  }
+
 export type  LinePros = {
     dataInput:InputItem[],
     handleChange: (name:string, value:string) =>void
@@ -14,10 +19,11 @@ export interface Fromdata{
   valueData: string;
 }
 
-export interface FromInscriptionProps  {
+export interface FromProps  {
   tapinput: StateInputForm;
    Loading: boolean;
-  onSubmit: (data: fromDataArray) => void;
+   handleDataBack: (name:string, value:string) => void;
+  onSubmit: () => void;
 }
 
 export interface InputItem  {
