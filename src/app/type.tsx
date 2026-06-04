@@ -21,7 +21,6 @@ export interface Fromdata{
 
 export interface FromProps  {
   tapinput: StateInputForm;
-   Loading: boolean;
    handleDataBack: (name:string, value:string) => void;
   onSubmit: () => void;
 }

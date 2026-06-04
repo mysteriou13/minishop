@@ -2,7 +2,7 @@
 import From from "@/app/components/From/From";
 import selector from "@/app/rtk/selector";
 import { StateInputForm } from "@/app/type";
-import { useState } from "react";
+import { useEffect } from "react";
 
 interface PageFromProps {
   initiatData: StateInputForm;
@@ -15,8 +15,13 @@ export default function PageFrom({
   title,
   initiatData,
 }: PageFromProps) {
-  const [showLoading, setShowLoading] = useState(false);
+
   const { DataBackFromSelector, setDataBackSelector } = selector();
+  useEffect(() => {
+    setDataBackSelector([]);
+  
+  }, []);
+
   /*add new array in data back*/
   const AddHandleDataBack = (name: string, value: string) => {
     setDataBackSelector(
@@ -38,7 +43,6 @@ export default function PageFrom({
         <From
           tapinput={initiatData}
           onSubmit={handleSubmit}
-          Loading={showLoading}
           handleDataBack={AddHandleDataBack}
         />
       </div>

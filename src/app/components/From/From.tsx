@@ -4,9 +4,10 @@ import LineInput from "@/app/components/LineInput/LineInput";
 import LoaadingSpinner from "@/app/components/LoadingSpinner/LoadingSpinner";
 import { FromProps} from "@/app/type";
 
-export default function From({ tapinput,Loading, onSubmit, handleDataBack }: FromProps) {
+export default function From({ tapinput, onSubmit, handleDataBack }: FromProps) {
 
   const [formGroups, setFormGroups] = useState(tapinput);
+  const [showLoading, setShowLoading] = useState(false);
   //update data input
   const UpataDatainput = (nameinput: string, data: string) => {
     setFormGroups((prev) =>
@@ -22,11 +23,15 @@ export default function From({ tapinput,Loading, onSubmit, handleDataBack }: Fro
   /*submit form*/
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setShowLoading(true);
     /*verif if input from if not empty*/
     const hasEmptyInput = formGroups.flat().some((input) => !input.value);    
     if (!hasEmptyInput) {
       onSubmit();
     }
+      setTimeout(() => {
+      setShowLoading(false);
+    }, 2000);
   };
 
   return (
@@ -34,7 +39,7 @@ export default function From({ tapinput,Loading, onSubmit, handleDataBack }: Fro
       <div>
         <form onSubmit={handleSubmit}>
              {
-             Loading == true ? (
+             showLoading ? (
               <LoaadingSpinner/>
              ) : (
           formGroups.map((group, index) => (
