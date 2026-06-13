@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "./store";
-import { setFrom,setStatusResponseBack } from "./slice/slicerFrom";
+import { setFrom } from "./slice/slicerFrom";
+import{setToken} from "./slice/sliceuser";
 import { databack } from "@/app/type";
 
 export default function selector() {
@@ -13,9 +14,13 @@ const dispatch = useDispatch();
     dispatch(setFrom(data));
 }
 
+ const setTokenSelector = (token: string | null) => {
+    dispatch(setToken(token));
+}
 
 return {
     DataBackFromSelector,
     setDataBackSelector,
+    setTokenSelector,
    }
 }

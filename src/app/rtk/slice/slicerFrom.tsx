@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {databack} from "@/app/type";
-export interface FromState {
+interface FromState {
     dataBack: databack[];
     statusReponseBack?: boolean;
 }

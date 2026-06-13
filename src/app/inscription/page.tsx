@@ -15,7 +15,6 @@ export default function InscriptionPage() {
   const handleSubmit = async () => {
   let response = await createUser(DataBackFromSelector).unwrap();
     setResponse(response.inscriptionStatus);
-  
   };
 
 
