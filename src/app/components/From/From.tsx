@@ -42,19 +42,24 @@ export default function From({ tapinput, onSubmit, handleDataBack }: FromProps) 
              showLoading ? (
               <LoaadingSpinner/>
              ) : (
-          formGroups.map((group, index) => (
+          <>
+          {formGroups.map((group, index) => (
               <LineInput
               key={index}
               dataInput={group}
               handleChange={UpataDatainput}
             />
              
-          ))
-             )
-            }
-          <button className="button" type="submit">
+          ))}
+          
+        
+         <button className="button" type="submit">
             envoyer
           </button>
+          </>
+             )
+            }
+             
         </form>
     
       </div>

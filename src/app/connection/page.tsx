@@ -1,17 +1,17 @@
 "use client";
 import { initialStateConnection } from "../Utilis"
-import {useEffect} from "react";
+import {useConnectionUserMutation} from "@/app/rtk/api/apiUser";
 import selector from "@/app/rtk/selector";
 import PageFrom from "@/app/components/PageFrom/PageFrom";
 export default function  connection() {
-  const {setDataBackSelector} = selector();
-  const handleSubmit = () => {
-    // TODO: implement connection submit behavior
+  const [connectionUser] = useConnectionUserMutation();
+  const { DataBackFromSelector } = selector();
+  const handleSubmit = async () => {
+    const response = await connectionUser(DataBackFromSelector).unwrap();
+    console.log("connection response", response);
   };
 
-  useEffect(() => { 
-    setDataBackSelector([]);
-  }, [])
+
 
   return (
     <div className=""> 

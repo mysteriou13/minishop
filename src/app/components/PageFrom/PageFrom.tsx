@@ -19,7 +19,6 @@ export default function PageFrom({
   const { DataBackFromSelector, setDataBackSelector } = selector();
   useEffect(() => {
     setDataBackSelector([]);
-  
   }, []);
 
   /*add new array in data back*/

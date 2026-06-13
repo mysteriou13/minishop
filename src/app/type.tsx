@@ -10,8 +10,15 @@ export type  LinePros = {
     handleChange: (name:string, value:string) =>void
 }
 
-export interface fromDataArray {
-  [key: string]: string;
+export type fromDataArray = databack[];
+
+export interface InscriptionResponse {
+  inscriptionStatus: boolean;
+}
+
+export interface ConnexionResponse {
+  connexionStatus: boolean;
+  token?: string;
 }
 
 export interface Fromdata{

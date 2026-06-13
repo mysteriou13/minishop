@@ -2,10 +2,12 @@ import {createSlice} from "@reduxjs/toolkit";
 import {databack} from "@/app/type";
 export interface FromState {
     dataBack: databack[];
+    statusReponseBack?: boolean;
 }
 
 const initialState: FromState = {
-    dataBack: []
+    dataBack: [],
+    statusReponseBack: undefined
 }
 
 const slicerFrom = createSlice({
@@ -14,9 +16,12 @@ const slicerFrom = createSlice({
     reducers: {
         setFrom: (state, action) => {
             state.dataBack = action.payload
+        },
+        setStatusResponseBack: (state, action) => {
+            state.statusReponseBack = action.payload
         }
     }
 })
 
-export const {setFrom} = slicerFrom.actions
+export const {setFrom, setStatusResponseBack} = slicerFrom.actions
 export default slicerFrom.reducer
