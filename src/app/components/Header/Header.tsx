@@ -1,8 +1,57 @@
+"use client";
+import { useState, useEffect } from "react";
+import selector from "@/app/rtk/selector";
 import Link from "next/link";
 export default function Header() {
+
+  interface Link {
+    name: string;
+    link: string;
+    typelink: string;
+    visible: boolean;
+  }
+
+  const { token, setTokenSelector, loading } = selector();
+
+  let tab: Link[] = [
+    { name: "par encore client", link: "/inscription", typelink: "deconnected", visible: true },
+    { name: "déjà client", link: "/connection", typelink: "deconnected", visible: true },
+    { name: "panier", link: "/panier", typelink: "connected", visible: true },
+    { name: "déconnection", link: "/deconnection", typelink: "connected", visible: false }
+
+  ];
+
+  const [tablink, setTabLink] = useState<Link[]>(tab)
+ const [loadingState, setLoadingState] = useState<boolean | null>(loading);
+  /*loading page*/
+
+  useEffect(() => {
+    console.log("token:", token, "loadingState:", loadingState);
+   setTimeout(() => {
+    if (token && loadingState === false) {
+      setTabLink(tab.map(link => ({ ...link, visible: link.typelink === "connected" })));
+    } else {
+      setTabLink(tab.map(link => ({ ...link, visible: link.typelink === "deconnected" })));
+    }
+  }, 2000);
+
+  }, [token]);
+
+   useEffect(() => {
+    let token = localStorage.getItem('token');
+
+    if (token) {
+      setTabLink(tab.map(link => ({ ...link, visible: link.typelink === "connected" })));
+    } 
+
+
+  }, []);
+
   return (
     <header>
-      <div className="text-3xl font-bold">MiniShop</div>
+      <div className="text-3xl font-bold">MiniShop{
+      loadingState && " Loading..."
+      }</div>
 
       <div className="flex">
         <div>
@@ -14,19 +63,19 @@ export default function Header() {
             required
           />
         </div>
-        <div className="flex justify-between gap-5">
-          <div className="Form ">
-            <Link href="/inscription" className="Link">
-              par encore client
-            </Link>
+        <div className="">
+          <div className=" flex ml-5 gap-7">
+            {tablink.map((link, index) => (
+              <div key={index}>
+              {link.visible && (
+                <Link className="text-blue-500 underline" key={index} href={link.link}>
+                  {link.name}
+                </Link>
+              )}
+              </div>
+
+            ))}
           </div>
-          <div className="Form ">
-            {" "}
-            <Link href="/connection" className="Link">
-              déjà client{" "}
-            </Link>
-          </div>
-          <div className="Form ">panier</div>
         </div>
       </div>
     </header>

@@ -3,11 +3,12 @@ import { useState } from "react";
 import LineInput from "@/app/components/LineInput/LineInput";
 import LoaadingSpinner from "@/app/components/LoadingSpinner/LoadingSpinner";
 import { FromProps} from "@/app/type";
+import selector from "@/app/rtk/selector";
+import { setLoading } from "@/app/rtk/slice/slicerFrom";
 
 export default function From({ tapinput, onSubmit, handleDataBack }: FromProps) {
-
-  const [formGroups, setFormGroups] = useState(tapinput);
-  const [showLoading, setShowLoading] = useState(false);
+  const { loading, setLoadingSelector } = selector(); 
+   const [formGroups, setFormGroups] = useState(tapinput);
   //update data input
   const UpataDatainput = (nameinput: string, data: string) => {
     setFormGroups((prev) =>
@@ -23,15 +24,15 @@ export default function From({ tapinput, onSubmit, handleDataBack }: FromProps) 
   /*submit form*/
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setShowLoading(true);
+    setLoadingSelector(true);  
     /*verif if input from if not empty*/
     const hasEmptyInput = formGroups.flat().some((input) => !input.value);    
     if (!hasEmptyInput) {
-      onSubmit();
-    }
+      onSubmit(); 
       setTimeout(() => {
-      setShowLoading(false);
+     setLoadingSelector(false);
     }, 2000);
+  }
   };
 
   return (
@@ -39,7 +40,7 @@ export default function From({ tapinput, onSubmit, handleDataBack }: FromProps) 
       <div>
         <form onSubmit={handleSubmit}>
              {
-             showLoading ? (
+             loading == true ? (
               <LoaadingSpinner/>
              ) : (
           <>
@@ -49,10 +50,7 @@ export default function From({ tapinput, onSubmit, handleDataBack }: FromProps) 
               dataInput={group}
               handleChange={UpataDatainput}
             />
-             
           ))}
-          
-        
          <button className="button" type="submit">
             envoyer
           </button>
