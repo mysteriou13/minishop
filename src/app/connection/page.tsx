@@ -1,4 +1,5 @@
 "use client";
+import {redirect} from "next/navigation";
 import { useState } from "react";
 import { initialStateConnection } from "../Utilis"
 import {useConnectionUserMutation} from "@/app/rtk/api/apiUser";
@@ -11,33 +12,27 @@ export default function  connection() {
   const [errorStatus, setErrorStatus] = useState<boolean | null>(null);
 
   const handleSubmit = async () => {
-    const reponse = await connectionUser(DataBackFromSelector).unwrap();
-    setErrorStatus(reponse.connexionStatus);
-    if(reponse.token && loading === false){
-      localStorage.setItem('token', reponse.token);
-      setTokenSelector(reponse.token);
-      setUserToken(reponse.token);
-    };
+    setLoadingSelector(true);
+    try {
+      const reponse = await connectionUser(DataBackFromSelector).unwrap();
+      setErrorStatus(reponse.connexionStatus);
+      if(reponse.token){
+        localStorage.setItem('token', reponse.token);
+        setTokenSelector(reponse.token);
+        setUserToken(reponse.token);
+        redirect("/");
+      }
+    } catch {
+      setErrorStatus(false);
+    } finally {
+      setLoadingSelector(false);
+    }
 
 }
 
   return (
     <div> 
-     { errorStatus === false && loading == false &&  (  
-          <div className="
-          text-red-500 text-center
-           w-[80%] bg-white relative 
-           p-10
-           mt-10 
-           rounded-full shadow-md
-           left-[10%] 
-           text-[2em] 
-           ">
-            Erreur de connexion. Veuillez vérifier vos informations.
-          </div>
-      )}
       <PageFrom initiatData={initialStateConnection} title="Connection" handleSubmit={handleSubmit} />
-   
     </div>
   )
 }

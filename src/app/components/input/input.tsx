@@ -5,11 +5,13 @@ export default function Input({
   label,
   type,
   value,
+  errorMessage,
   handleChange,
 }: InputProps) {
   const autoCompleteValue = type === "password" ? "new-password" : "off";
 
   return (
+    <div>
     <div className="mb-4 flex flex-col gap-2">
       <label className="font-bold">{label}</label>{" "}
       <input
@@ -20,6 +22,8 @@ export default function Input({
         autoComplete={autoCompleteValue}
         onChange={(e) => handleChange(name,e.currentTarget.value)}
       />
+    </div>
+    <div className="text-red-500 text-sm">{errorMessage}</div>
     </div>
   );
 }

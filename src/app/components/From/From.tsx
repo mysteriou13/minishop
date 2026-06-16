@@ -4,7 +4,6 @@ import LineInput from "@/app/components/LineInput/LineInput";
 import LoaadingSpinner from "@/app/components/LoadingSpinner/LoadingSpinner";
 import { FromProps} from "@/app/type";
 import selector from "@/app/rtk/selector";
-import { setLoading } from "@/app/rtk/slice/slicerFrom";
 
 export default function From({ tapinput, onSubmit, handleDataBack }: FromProps) {
   const { loading, setLoadingSelector } = selector(); 

@@ -12,6 +12,7 @@ export default function LineInput({dataInput,handleChange}:LinePros) {
                   label={data.label}
                   type={data.type}
                   value={data.value}
+                  errorMessage={data.errorMessage}
                   handleChange={(name, value) => handleChange(name, value)}
                 />
         )}

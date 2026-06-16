@@ -11,12 +11,12 @@ export default function Header() {
     visible: boolean;
   }
 
-  const { token, setTokenSelector, loading } = selector();
+  const { token, loading } = selector();
 
   let tab: Link[] = [
     { name: "par encore client", link: "/inscription", typelink: "deconnected", visible: true },
     { name: "déjà client", link: "/connection", typelink: "deconnected", visible: true },
-    { name: "panier", link: "/panier", typelink: "connected", visible: true },
+    { name: "panier", link: "/panier", typelink: "connected", visible: false },
     { name: "déconnection", link: "/deconnection", typelink: "connected", visible: false }
 
   ];
@@ -26,14 +26,13 @@ export default function Header() {
   /*loading page*/
 
   useEffect(() => {
-    console.log("token:", token, "loadingState:", loadingState);
-   setTimeout(() => {
-    if (token && loadingState === false) {
+  
+    if (token) {
       setTabLink(tab.map(link => ({ ...link, visible: link.typelink === "connected" })));
     } else {
       setTabLink(tab.map(link => ({ ...link, visible: link.typelink === "deconnected" })));
     }
-  }, 2000);
+ 
 
   }, [token]);
 

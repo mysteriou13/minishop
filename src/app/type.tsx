@@ -14,6 +14,7 @@ export type fromDataArray = databack[];
 
 export interface InscriptionResponse {
   inscriptionStatus: boolean;
+  errorEmail: string;
 }
 
 export interface ConnexionResponse {
@@ -36,6 +37,7 @@ export interface InputItem  {
   name: string;
   label: string;
   value: string;
+  errorMessage?: string;
   type: string;
 };
 

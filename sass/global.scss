@@ -1,10 +1,10 @@
-@reference "../src/app/globals.css";
 
-@import "./components/Header/Header.scss";
-@import "./components/From/From.scss";
-@import "./components/Button/Button.scss";
-@import "./components/Footer/Footer.scss";
-@import "./components/Link/Link.scss";
-@import "./components/PageFrom/PageFrom.scss";
-@import "./base/variable.scss";
-@import "./base/base.scss";
+
+@use "./base/variable.scss";
+@use "./base/base.scss";
+@use "./components/Header/Header.scss";
+@use "./components/From/From.scss";
+@use "./components/Button/Button.scss";
+@use "./components/Footer/Footer.scss";
+@use "./components/Link/Link.scss";
+@use "./components/PageFrom/PageFrom.scss";

@@ -4,24 +4,41 @@ import { useCreateUserMutation } from "@/app/rtk/api/apiUser";
 import { initialStateInscription } from "@/app/Utilis";
 import PageFrom from "@/app/components/PageFrom/PageFrom";
 import selector from "@/app/rtk/selector";
-import { useState } from "react";
+import { useState} from "react";
 
 export default function InscriptionPage() {
   /*data from */
   const [createUser] = useCreateUserMutation();
   const { DataBackFromSelector } = selector();
-  const [response, setResponse] = useState<boolean >(false);
-  //submit form
+  const [response, setResponse] = useState<any>(null);
+
+
+
+  //submit form inscription
   const handleSubmit = async () => {
-  let response = await createUser(DataBackFromSelector).unwrap();
-    setResponse(response.inscriptionStatus);
+    try {
+      const response = await createUser(DataBackFromSelector).unwrap();
+      if (response.inscriptionStatus === false) {
+        initialStateInscription.forEach((line) => {
+          line.forEach((item) => {
+            if (item.name === "email") {
+              item.errorMessage = response.errorEmail || "error email invalide";
+            }
+          });
+        });
+      }
+      setResponse(response.inscriptionStatus);
+    } catch {
+      setResponse(false);
+    }
+
   };
 
 
   return (
     <div>
       
-      {response === false && (
+      {response !== true && (
       <PageFrom
         handleSubmit={handleSubmit}
         title="Inscription"

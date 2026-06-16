@@ -4,6 +4,7 @@ interface FromState {
     dataBack: databack[];
     statusReponseBack: boolean;
     loading: boolean | null;
+      
 }
 
 const initialState: FromState = {
@@ -24,9 +25,10 @@ const slicerFrom = createSlice({
         },
         setLoading: (state, action) => {
             state.loading = action.payload
-        }
+        },
+
     }
 })
 
-export const {setFrom, setStatusResponseBack, setLoading} = slicerFrom.actions
+export const {setFrom, setStatusResponseBack, setLoading, } = slicerFrom.actions
 export default slicerFrom.reducer

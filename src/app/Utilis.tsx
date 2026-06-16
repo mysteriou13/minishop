@@ -7,6 +7,7 @@ export const initialStateConnection: StateInputForm = [
       label: "email",
       type: "email",
       value: "",
+      errorMessage: ""
     },
 
     {
@@ -14,6 +15,7 @@ export const initialStateConnection: StateInputForm = [
       label: "password",
       type: "password",
       value: "",
+      errorMessage: ""
     },
   ],
 ];
@@ -26,6 +28,7 @@ export const initialStateInscription: StateInputForm = [
       label: "email",
       type: "email",
       value: "",
+      errorMessage: "error email invalide"
     },
 
     {
@@ -33,6 +36,7 @@ export const initialStateInscription: StateInputForm = [
       label: "password",
       type: "password",
       value: "",
+      errorMessage: "error mot de passe invalide"
     },
   ],
 
@@ -42,6 +46,7 @@ export const initialStateInscription: StateInputForm = [
       label: "nom",
       type: "text",
       value: "",
+    
     },
 
     {
@@ -49,6 +54,7 @@ export const initialStateInscription: StateInputForm = [
       label: "prénom",
       type: "text",
       value: "",
+     
     },
   ],
 
@@ -58,6 +64,7 @@ export const initialStateInscription: StateInputForm = [
       label: "adress",
       type: "text",
       value: "",
+     
     },
 
     {
@@ -65,6 +72,7 @@ export const initialStateInscription: StateInputForm = [
       label: "complement adress",
       type: "text",
       value: "",
+    
     },
   ],
   [
@@ -73,12 +81,14 @@ export const initialStateInscription: StateInputForm = [
       label: "ville",
       type: "text",
       value: "",
+  
     },
     {
       name: "code postal",
       label: "code postal",
       type: "text",
       value: "",
+  
     },
 
     {
@@ -86,6 +96,7 @@ export const initialStateInscription: StateInputForm = [
       label: "pays",
       type: "text",
       value: "",
+      
     },
   ],
 
@@ -95,6 +106,7 @@ export const initialStateInscription: StateInputForm = [
       label: "region",
       type: "text",
       value: "",
+      errorMessage: "error test"
     },
   ],
 ];

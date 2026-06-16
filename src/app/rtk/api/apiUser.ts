@@ -11,6 +11,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
 export const apiUser = createApi({
   reducerPath: "apiUser",
   baseQuery: fetchBaseQuery({ baseUrl: `${apiUrl}/` }),
+  tagTypes: ["User"],
   endpoints: (builder) => ({
     createUser: builder.mutation<InscriptionResponse, fromDataArray>({
       query: (data: fromDataArray) => ({
@@ -18,6 +19,7 @@ export const apiUser = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["User"],
     }),
     connectionUser: builder.mutation<ConnexionResponse, fromDataArray>({
       query: (data: fromDataArray) => ({
@@ -25,6 +27,7 @@ export const apiUser = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["User"],
     }),
 
   }),

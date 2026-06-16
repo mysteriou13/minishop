@@ -1,3 +1,5 @@
+@reference "../src/app/globals.css";
+
 header {
     @apply bg-white relative p-10  w-[95%] mx-auto mt-10;
     @apply rounded-[20px];
