@@ -28,7 +28,7 @@ export const initialStateInscription: StateInputForm = [
       label: "email",
       type: "email",
       value: "",
-      errorMessage: "error email invalide"
+      errorMessage: ""
     },
 
     {
@@ -36,7 +36,7 @@ export const initialStateInscription: StateInputForm = [
       label: "password",
       type: "password",
       value: "",
-      errorMessage: "error mot de passe invalide"
+      errorMessage: ""
     },
   ],
 
@@ -106,7 +106,7 @@ export const initialStateInscription: StateInputForm = [
       label: "region",
       type: "text",
       value: "",
-      errorMessage: "error test"
+      errorMessage: ""
     },
   ],
 ];

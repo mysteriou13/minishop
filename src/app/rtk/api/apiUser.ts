@@ -14,15 +14,16 @@ export const apiUser = createApi({
   tagTypes: ["User"],
   endpoints: (builder) => ({
     createUser: builder.mutation<InscriptionResponse, fromDataArray>({
-      query: (data: fromDataArray) => ({
+      query: (data) => ({
         url: "/users/inscription",
         method: "POST",
         body: data,
       }),
       invalidatesTags: ["User"],
     }),
+
     connectionUser: builder.mutation<ConnexionResponse, fromDataArray>({
-      query: (data: fromDataArray) => ({
+      query: (data) => ({
         url: "/users/connection",
         method: "POST",
         body: data,
@@ -32,5 +33,4 @@ export const apiUser = createApi({
 
   }),
 });
-
 export const { useCreateUserMutation, useConnectionUserMutation } = apiUser;

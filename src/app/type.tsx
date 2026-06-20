@@ -18,7 +18,8 @@ export interface InscriptionResponse {
 }
 
 export interface ConnexionResponse {
-  connexionStatus: boolean;
+  StatusUser: boolean;
+  StatusPassword: boolean;
   token?: string;
 }
 

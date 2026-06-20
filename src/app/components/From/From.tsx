@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LineInput from "@/app/components/LineInput/LineInput";
 import LoaadingSpinner from "@/app/components/LoadingSpinner/LoadingSpinner";
 import { FromProps} from "@/app/type";
@@ -8,6 +8,11 @@ import selector from "@/app/rtk/selector";
 export default function From({ tapinput, onSubmit, handleDataBack }: FromProps) {
   const { loading, setLoadingSelector } = selector(); 
    const [formGroups, setFormGroups] = useState(tapinput);
+
+  useEffect(() => {
+    setFormGroups(tapinput);
+  }, [tapinput]);
+
   //update data input
   const UpataDatainput = (nameinput: string, data: string) => {
     setFormGroups((prev) =>

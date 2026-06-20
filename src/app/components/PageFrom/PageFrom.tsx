@@ -7,7 +7,7 @@ import { useEffect } from "react";
 interface PageFromProps {
   initiatData: StateInputForm;
   title: string;
-  handleSubmit: () => void | Promise<void>;
+  handleSubmit: (data: StateInputForm) => void | Promise<void>;
 }
 
 export default function PageFrom({
@@ -32,6 +32,15 @@ export default function PageFrom({
             : [{ name, value }],
         ),
     );
+
+    /*keep in input after submit*/
+     initiatData.map((line) =>
+      line.map((item) => {
+        if (item.name === name && item.value !== value && item.name !== "password") {
+          item.value = value;
+        }
+      }),
+    );
   };
 
   return (
@@ -41,7 +50,7 @@ export default function PageFrom({
         <p className="font-bold text-[24px]">{title}</p>
         <From
           tapinput={initiatData}
-          onSubmit={handleSubmit}
+          onSubmit={() => handleSubmit(initiatData)}
           handleDataBack={AddHandleDataBack}
         />
       </div>
