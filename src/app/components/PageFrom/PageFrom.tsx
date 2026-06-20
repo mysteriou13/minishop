@@ -22,6 +22,8 @@ export default function PageFrom({
   }, []);
 
   /*add new array in data back*/
+
+  
   const AddHandleDataBack = (name: string, value: string) => {
     setDataBackSelector(
       [...(DataBackFromSelector || [])]
@@ -32,6 +34,7 @@ export default function PageFrom({
             : [{ name, value }],
         ),
     );
+    
 
     /*keep in input after submit*/
      initiatData.map((line) =>
