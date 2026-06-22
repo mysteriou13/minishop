@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { redirect } from "next/navigation";
 import { initialStateConnection } from "../Utilis"
 import {useConnectionUserMutation} from "@/app/rtk/api/apiUser";
@@ -8,13 +8,23 @@ import selector from "@/app/rtk/selector";
 import PageFrom from "@/app/components/PageFrom/PageFrom";
 export default function  connection() {
   const [connectionUser] = useConnectionUserMutation();
-  const { DataBackFromSelector,setTokenSelector } = selector();
+  const { setDataBackSelector, DataBackFromSelector,setTokenSelector } = selector();
   const [initialData, setInitialData] = useState(initialStateConnection);
- 
+
+
+    useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        redirect("/"); // Redirection vers la page d'accueil
+      }
+      /*auto completion data input in databackfrom*/   
+      setDataBackSelector(initialData.flat().map((item) => ({ name: item.name, value: item.value })));
+
+    }, []);
 
   const handleSubmit = async () => {
+      const reponse = await connectionUser(DataBackFromSelector).unwrap();
 
-      const reponse = await connectionUser(DataBackFromSelector).unwrap();      
       setInitialData((prev) =>
           prev.map((line) =>
             line.map((item) =>
@@ -32,12 +42,15 @@ export default function  connection() {
         setTokenSelector(reponse.token);
         redirect("/"); // Redirection vers la page d'accueil
       }
-      
+   
 }
+
 
   return (
     <div> 
+    
       <PageFrom initiatData={initialData} title="Connection" handleSubmit={() => handleSubmit()} />
+
     </div>
   )
 }
