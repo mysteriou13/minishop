@@ -35,7 +35,6 @@ export default function PageFrom({
         ),
     );
     
-
     /*keep in input after submit*/
      initiatData.map((line) =>
       line.map((item) => {

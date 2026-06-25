@@ -8,10 +8,9 @@ import selector from "@/app/rtk/selector";
 import PageFrom from "@/app/components/PageFrom/PageFrom";
 export default function  connection() {
   const [connectionUser] = useConnectionUserMutation();
-  const { setDataBackSelector, DataBackFromSelector,setTokenSelector } = selector();
-  const [initialData, setInitialData] = useState(initialStateConnection);
-
-
+  const { setDataBackSelector, DataBackFromSelector,setTokenSelector ,initialDataConnection} = selector();
+  const [initialData, setInitialData] = useState(initialDataConnection);
+  
     useEffect(() => {
       const token = localStorage.getItem("token");
       if (token) {
