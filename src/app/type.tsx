@@ -29,7 +29,6 @@ export interface Fromdata{
 }
 
 export interface FromProps  {
-   handleDataBack: (name:string, value:string) => void;
   onSubmit: () => void;
 }
 

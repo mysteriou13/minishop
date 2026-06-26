@@ -5,13 +5,27 @@ import LoaadingSpinner from "@/app/components/LoadingSpinner/LoadingSpinner";
 import { FromProps} from "@/app/type";
 import selector from "@/app/rtk/selector";
 
-export default function From({  onSubmit, handleDataBack }: FromProps) {
-  const { loading, setLoadingSelector, initialDataInput } = selector(); 
-   const [formGroups, setFormGroups] = useState(initialDataInput);
+export default function From({onSubmit}: FromProps) {
+  const { loading, setLoadingSelector, initialDataInput,setDataBackSelector,DataBackFromSelector } = selector(); 
+   const [formGroups, setFormGroups] = useState(
+    initialDataInput.map((line) => line.map((item) => ({ ...item }))),
+  );
 
   useEffect(() => {
-    setFormGroups(initialDataInput);
+    setFormGroups(initialDataInput.map((line) => line.map((item) => ({ ...item }))));
   }, [initialDataInput]);
+
+    const AddHandleDataBack = (name: string, value: string) => {
+    setDataBackSelector(
+      [...(DataBackFromSelector || [])]
+        .map((item) => (item.name === name ? { ...item, value } : item))
+        .concat(
+          DataBackFromSelector?.find((item) => item.name === name)
+            ? []
+            : [{ name, value }],
+        ),
+    );
+  };
 
   //update data input
   const UpataDatainput = (nameinput: string, data: string) => {
@@ -22,7 +36,7 @@ export default function From({  onSubmit, handleDataBack }: FromProps) {
         ),
       ),
     );
-    handleDataBack(nameinput, data);
+    AddHandleDataBack(nameinput, data);
   };
 
   /*submit form*/
