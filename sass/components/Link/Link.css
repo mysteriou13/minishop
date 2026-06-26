@@ -1,0 +1,4 @@
+@reference "../src/app/globals.css";
+.Link {
+  @apply text-blue-500 underline;
+}/*# sourceMappingURL=Link.css.map */

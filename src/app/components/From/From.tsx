@@ -5,13 +5,13 @@ import LoaadingSpinner from "@/app/components/LoadingSpinner/LoadingSpinner";
 import { FromProps} from "@/app/type";
 import selector from "@/app/rtk/selector";
 
-export default function From({ tapinput, onSubmit, handleDataBack }: FromProps) {
-  const { loading, setLoadingSelector } = selector(); 
-   const [formGroups, setFormGroups] = useState(tapinput);
+export default function From({  onSubmit, handleDataBack }: FromProps) {
+  const { loading, setLoadingSelector, initialDataInput } = selector(); 
+   const [formGroups, setFormGroups] = useState(initialDataInput);
 
   useEffect(() => {
-    setFormGroups(tapinput);
-  }, [tapinput]);
+    setFormGroups(initialDataInput);
+  }, [initialDataInput]);
 
   //update data input
   const UpataDatainput = (nameinput: string, data: string) => {

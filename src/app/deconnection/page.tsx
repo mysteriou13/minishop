@@ -9,15 +9,19 @@ export default function page() {
   const [countdown, setCountdown] = useState(3);
 
   useEffect(() => {
+    // Clear token from localStorage and Redux store
+    localStorage.removeItem("token");
+    setTokenSelector(null);
+    setLoading(false);
+  }, []);
 
+  useEffect(() => {
     /*decrement countdown*/
     const interval = setInterval(() => {
       setCountdown((prevCountdown) => prevCountdown - 1);
 
       if (countdown == 1) {
-        setTokenSelector(null);
-        localStorage.removeItem("token");
-        setLoading(false);
+        
         redirect("/");
       }
     }, 2000);

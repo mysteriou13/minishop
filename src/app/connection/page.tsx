@@ -1,54 +1,57 @@
 "use client";
-
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { redirect } from "next/navigation";
-import { initialStateConnection } from "../Utilis"
-import {useConnectionUserMutation} from "@/app/rtk/api/apiUser";
+import { useConnectionUserMutation } from "@/app/rtk/api/apiUser";
 import selector from "@/app/rtk/selector";
 import PageFrom from "@/app/components/PageFrom/PageFrom";
-export default function  connection() {
-  const [connectionUser] = useConnectionUserMutation();
-  const { setDataBackSelector, DataBackFromSelector,setTokenSelector ,initialDataConnection} = selector();
-  const [initialData, setInitialData] = useState(initialDataConnection);
-  
-    useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        redirect("/"); // Redirection vers la page d'accueil
-      }
-      /*auto completion data input in databackfrom*/   
-      setDataBackSelector(initialData.flat().map((item) => ({ name: item.name, value: item.value })));
+import { InputItem } from "@/app/type";
+import { initialStateConnection } from "@/app/Utilis";
+export default function connection() {
 
-    }, []);
+  const [connectionUser] = useConnectionUserMutation();
+  const { setDataBackSelector, DataBackFromSelector, setTokenSelector, setInitialDataInputSelector, initialDataInput } = selector();
+  const [initialData, setInitialData] = useState(initialStateConnection);
+
+  useEffect(() => {
+    setInitialDataInputSelector(initialStateConnection);
+    const token = localStorage.getItem("token");
+    if (token) {
+      redirect("/"); // Redirection vers la page d'accueil
+    }
+    /*auto completion data input in databackfrom*/
+    setDataBackSelector(initialStateConnection.flat().map((item: InputItem) => ({ name: item.name, value: item.value })));
+
+  }, []);
 
   const handleSubmit = async () => {
-      const reponse = await connectionUser(DataBackFromSelector).unwrap();
+    const reponse = await connectionUser(DataBackFromSelector).unwrap();
 
-      setInitialData((prev) =>
-          prev.map((line) =>
-            line.map((item) =>
-              item.name === "email" && reponse.StatusUser === false
-                ? { ...item, errorMessage: "email invalide" }
-                : item.name === "password" && reponse.StatusPassword === false
-                ? { ...item, errorMessage: "password invalide" }
-                : { ...item, errorMessage: "" },
-            ),
-          ),
-      );
+    // Update error messages in the form based on the response
+    setInitialData(
+      initialData.map((line: InputItem[]) =>
+        line.map((item: InputItem) =>
+          item.name === "email" && reponse.StatusUser === false
+            ? { ...item, errorMessage: "email invalide" }
+            : item.name === "password" && reponse.StatusPassword === false
+              ? { ...item, errorMessage: "password invalide" }
+              : { ...item, errorMessage: "" },
+        ),
+      ),
+    );
 
-      if(reponse.StatusUser === true && reponse.StatusPassword === true && reponse.token){
-        localStorage.setItem("token", reponse.token);
-        setTokenSelector(reponse.token);
-        redirect("/"); // Redirection vers la page d'accueil
-      }
-   
-}
+    if (reponse.StatusUser === true && reponse.StatusPassword === true && reponse.token) {
+      localStorage.setItem("token", reponse.token);
+      setTokenSelector(reponse.token);
+      redirect("/"); // Redirection vers la page d'accueil
+    }
+  }
+
 
 
   return (
-    <div> 
-    
-      <PageFrom initiatData={initialData} title="Connection" handleSubmit={() => handleSubmit()} />
+    <div>
+
+      <PageFrom  title="Connection" handleSubmit={() => handleSubmit()} />
 
     </div>
   )

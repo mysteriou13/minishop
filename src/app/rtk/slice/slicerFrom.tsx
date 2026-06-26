@@ -1,8 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {databack,StateInputForm} from "@/app/type";
-import { initialStateConnection } from "@/app/Utilis";
 interface FromState {
-    initialDataConnection: StateInputForm;
+    initialDataInput: StateInputForm;
     dataBack: databack[];
     statusReponseBack: boolean;
     loading: boolean | null;
@@ -10,7 +9,7 @@ interface FromState {
 }
 
 const initialState: FromState = {
-    initialDataConnection: initialStateConnection,
+    initialDataInput: [],
     dataBack: [],
     statusReponseBack: false,
     loading: false,
@@ -29,12 +28,12 @@ const slicerFrom = createSlice({
         setLoading: (state, action) => {
             state.loading = action.payload
         },
-        setInitialDataConnection: (state, action) => {
-            state.initialDataConnection = action.payload
+        setInitialDataInput: (state, action) => {
+            state.initialDataInput = action.payload
         }
 
     }
 })
 
-export const {setFrom, setStatusResponseBack, setLoading, setInitialDataConnection } = slicerFrom.actions
+export const {setFrom, setStatusResponseBack, setLoading, setInitialDataInput } = slicerFrom.actions
 export default slicerFrom.reducer

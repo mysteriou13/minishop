@@ -4,15 +4,17 @@ import { useCreateUserMutation } from "@/app/rtk/api/apiUser";
 import { initialStateInscription } from "@/app/Utilis";
 import PageFrom from "@/app/components/PageFrom/PageFrom";
 import selector from "@/app/rtk/selector";
-import { useState} from "react";
+import { useState, useEffect} from "react";
 
 export default function InscriptionPage() {
   /*data from */
   const [createUser] = useCreateUserMutation();
   const { DataBackFromSelector } = selector();
   const [response, setResponse] = useState<any>(null);
-
-
+const { setInitialDataInputSelector } = selector();
+  useEffect(() => {
+    setInitialDataInputSelector(initialStateInscription);
+  }, []);
 
   //submit form inscription
   const handleSubmit = async () => {
@@ -42,7 +44,6 @@ export default function InscriptionPage() {
       <PageFrom
         handleSubmit={handleSubmit}
         title="Inscription"
-        initiatData={initialStateInscription}
       />
       )}
 

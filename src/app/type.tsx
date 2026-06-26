@@ -29,7 +29,6 @@ export interface Fromdata{
 }
 
 export interface FromProps  {
-  tapinput: StateInputForm;
    handleDataBack: (name:string, value:string) => void;
   onSubmit: () => void;
 }

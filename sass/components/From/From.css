@@ -1,0 +1,9 @@
+@reference "../src/app/globals.css";
+.From {
+  @apply bg-white relative p-10 mt-10;
+  @apply w-[60vw];
+  @apply left-1/2;
+  @apply -translate-x-1/2;
+  @apply rounded-[20px];
+  @apply shadow-[0_25px_50px_-12px_rgb(0_0_0/0.6)];
+}/*# sourceMappingURL=From.css.map */

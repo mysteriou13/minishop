@@ -4,8 +4,7 @@ import selector from "@/app/rtk/selector";
 import { StateInputForm } from "@/app/type";
 import { useEffect } from "react";
 
-interface PageFromProps {
-  initiatData: StateInputForm;
+interface PageFromProps {  
   title: string;
   handleSubmit: (data: StateInputForm) => void | Promise<void>;
 }
@@ -13,10 +12,10 @@ interface PageFromProps {
 export default function PageFrom({
   handleSubmit,
   title,
-  initiatData,
+ 
 }: PageFromProps) {
 
-  const { DataBackFromSelector, setDataBackSelector } = selector();
+  const { DataBackFromSelector, setDataBackSelector,initialDataInput,setInitialDataInputSelector} = selector();
   useEffect(() => {
     setDataBackSelector([]);
   }, []);
@@ -36,7 +35,7 @@ export default function PageFrom({
     );
     
     /*keep in input after submit*/
-     initiatData.map((line) =>
+     initialDataInput.map((line) =>
       line.map((item) => {
         if (item.name === name && item.value !== value && item.name !== "password") {
           item.value = value;
@@ -51,8 +50,7 @@ export default function PageFrom({
         className="MainDivPageFrom">
         <p className="font-bold text-[24px]">{title}</p>
         <From
-          tapinput={initiatData}
-          onSubmit={() => handleSubmit(initiatData)}
+          onSubmit={() => handleSubmit(initialDataInput)}
           handleDataBack={AddHandleDataBack}
         />
       </div>

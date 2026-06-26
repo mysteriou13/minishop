@@ -1,0 +1,13 @@
+@reference "../src/app/globals.css";
+.MainDivPageFrom {
+  @apply shadow-2xl/60;
+  @apply rounded-[20px];
+  @apply bg-white;
+  @apply min-h-[70vh];
+  @apply w-[60vw];
+  @apply relative;
+  @apply left-[50%];
+  @apply translate-x-[-50%];
+  @apply p-10;
+  @apply mt-10;
+}/*# sourceMappingURL=PageFrom.css.map */

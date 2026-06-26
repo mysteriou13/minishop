@@ -1,6 +1,6 @@
 import Header from "./components/Header/Header";
 import type { Metadata } from "next";
-import Footer from "./components/Footer/Footer";
+import Footer from "@/app/components/Footer/Footer";
 import "./globals.css";
 import "../../sass/global.scss";
 import Provide from "./rtk/provider";

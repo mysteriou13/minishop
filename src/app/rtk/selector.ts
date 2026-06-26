@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "./store";
-import { setFrom,setInitialDataConnection,setLoading } from "./slice/slicerFrom";
+import { setFrom,setInitialDataInput,setLoading } from "./slice/slicerFrom";
 import{setToken} from "./slice/sliceuser";
 import { databack, StateInputForm } from "@/app/type";
 
@@ -9,7 +9,7 @@ export default function selector() {
 let DataBackFromSelector = useSelector((state: RootState) => state.from.dataBack);
 let token = useSelector((state: RootState) => state.user.token);
 let loading = useSelector((state: RootState) => state.from.loading);
-let initialDataConnection = useSelector((state: RootState) => state.from.initialDataConnection);
+let initialDataInput = useSelector((state: RootState) => state.from.initialDataInput);
 
 const dispatch = useDispatch();
 
@@ -22,8 +22,8 @@ const dispatch = useDispatch();
 const setLoadingSelector = (isLoading: boolean) => {
     dispatch(setLoading(isLoading));
   }
-const setInitialDataConnectionSelector = (data: StateInputForm) => {
-    dispatch(setInitialDataConnection(data));
+const setInitialDataInputSelector = (data: StateInputForm) => {
+    dispatch(setInitialDataInput(data));
 }
 return {
     DataBackFromSelector,
@@ -32,8 +32,8 @@ return {
     setLoadingSelector,
     loading,
     token,
-    initialDataConnection,
-    setInitialDataConnectionSelector
+    initialDataInput,
+    setInitialDataInputSelector
     
    }
 }

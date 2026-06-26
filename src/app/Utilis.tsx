@@ -113,7 +113,3 @@ export const initialStateInscription: StateInputForm = [
 
 
 /* Submit handler for inscription form */
- export const handleSubmitInscription = (e: React.SubmitEvent, handleSubmit: () => void) => {
-    e.preventDefault();
-    handleSubmit();
-  };
