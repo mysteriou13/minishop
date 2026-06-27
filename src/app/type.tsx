@@ -7,7 +7,7 @@ export type StateInputForm = InputItem[][];
 
 export type  LinePros = {
     dataInput:InputItem[],
-    handleChange: (name:string, value:string) =>void
+    
 }
 
 export type fromDataArray = databack[];
@@ -40,9 +40,7 @@ export interface InputItem  {
   type: string;
 };
 
-export  interface InputProps extends InputItem {
-  handleChange: (name:any,value: any) => void;
-};
+
 
 
 export type ActionInscription =

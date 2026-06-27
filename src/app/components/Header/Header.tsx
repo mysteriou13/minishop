@@ -22,7 +22,7 @@ export default function Header() {
   ];
 
   const [tablink, setTabLink] = useState<Link[]>(tab)
- const [loadingState, setLoadingState] = useState<boolean | null>(loading);
+ ;
   /*loading page*/
 
   useEffect(() => {
@@ -48,9 +48,7 @@ export default function Header() {
 
   return (
     <header>
-      <div className="text-3xl font-bold">MiniShop{
-      loadingState && " Loading..."
-      }</div>
+  
 
       <div className="flex">
         <div>

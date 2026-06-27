@@ -1,4 +1,5 @@
-import { InputProps } from "@/app/type";
+import { InputItem } from "@/app/type";
+ import selector from "@/app/rtk/selector";
 
 export default function Input({
   name,
@@ -6,9 +7,9 @@ export default function Input({
   type,
   value,
   errorMessage,
-  handleChange,
-}: InputProps) {
+}: InputItem) {
 
+ const { UpataDatainput } = selector();
   
   return (
     <div>
@@ -19,7 +20,7 @@ export default function Input({
           name={name}
           type={type}
           value={value}
-          onChange={(e) => handleChange(name, e.currentTarget.value)}
+          onChange={(e) => UpataDatainput(name, e.currentTarget.value)}
         />
       </div>
       <div className="text-red-500 text-sm">{errorMessage}</div>

@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "./store";
 import { setFrom,setInitialDataInput,setLoading } from "./slice/slicerFrom";
 import{setToken} from "./slice/sliceuser";
-import { databack, StateInputForm } from "@/app/type";
+import { databack, InputItem, StateInputForm } from "@/app/type";
 
 export default function selector() {
 
@@ -25,6 +25,33 @@ const setLoadingSelector = (isLoading: boolean) => {
 const setInitialDataInputSelector = (data: StateInputForm) => {
     dispatch(setInitialDataInput(data));
 }
+
+  const AddHandleDataBack = (name: string, value: string) => {
+    setDataBackSelector(
+      [...(DataBackFromSelector || [])]
+        .map((item) => (item.name === name ? { ...item, value } : item))
+        .concat(
+          DataBackFromSelector?.find((item) => item.name === name)
+            ? []
+            : [{ name, value }],
+        ),
+    );
+  };
+
+   //update data input
+    const UpataDatainput = (nameinput: string, data: string) => {
+      setInitialDataInputSelector(
+        initialDataInput.map((group: InputItem[]) =>
+          group.map((input: InputItem) =>
+            input.name === nameinput ? { ...input, value: data } : input,     
+          ),
+        ),
+      );
+      AddHandleDataBack(nameinput, data);
+    };
+
+
+
 return {
     DataBackFromSelector,
     setDataBackSelector,
@@ -33,7 +60,9 @@ return {
     loading,
     token,
     initialDataInput,
-    setInitialDataInputSelector
+    setInitialDataInputSelector,
+    AddHandleDataBack,
+    UpataDatainput  
     
    }
 }
