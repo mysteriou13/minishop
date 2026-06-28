@@ -8,48 +8,27 @@ export default function Header() {
     name: string;
     link: string;
     typelink: string;
-    visible: boolean;
-  }
-
-  const { token, loading } = selector();
-
-  let tab: Link[] = [
-    { name: "par encore client", link: "/inscription", typelink: "deconnected", visible: true },
-    { name: "déjà client", link: "/connection", typelink: "deconnected", visible: true },
-    { name: "panier", link: "/panier", typelink: "connected", visible: false },
-    { name: "déconnection", link: "/deconnection", typelink: "connected", visible: false }
-
-  ];
-
-  const [tablink, setTabLink] = useState<Link[]>(tab)
- ;
-  /*loading page*/
-
-  useEffect(() => {
   
-    if (token) {
-      setTabLink(tab.map(link => ({ ...link, visible: link.typelink === "connected" })));
-    } else {
-      setTabLink(tab.map(link => ({ ...link, visible: link.typelink === "deconnected" })));
-    }
- 
-
+  }
+  const { token } = selector();
+  let tab: Link[] = [
+    { name: "accueil", link: "/", typelink: "default"},
+    { name: "inscription", link: "/inscription", typelink: "deconnected" },
+    { name: "connection", link: "/connection", typelink: "deconnected" },
+    { name: "panier", link: "/panier", typelink: "connected" },
+    { name: "déconnection", link: "/deconnection", typelink: "connected" }
+  ];
+  const [tablink, setTabLink] = useState<Link[]>(tab);
+  useEffect(() => {
+    setTabLink(
+      tab.filter((link) => link.typelink === "default" || 
+      (link.typelink === "connected" && token) ||
+        (link.typelink === "deconnected" && !token))
+    );
   }, [token]);
-
-   useEffect(() => {
-    let token = localStorage.getItem('token');
-
-    if (token) {
-      setTabLink(tab.map(link => ({ ...link, visible: link.typelink === "connected" })));
-    } 
-
-
-  }, []);
 
   return (
     <header>
-  
-
       <div className="flex">
         <div>
           <input
@@ -64,13 +43,14 @@ export default function Header() {
           <div className=" flex ml-5 gap-7">
             {tablink.map((link, index) => (
               <div key={index}>
-              {link.visible && (
-                <Link className="text-blue-500 underline" key={index} href={link.link}>
+                <Link
+                  className="text-blue-500 underline"
+                  key={index}
+                  href={link.link}
+                >
                   {link.name}
                 </Link>
-              )}
               </div>
-
             ))}
           </div>
         </div>
