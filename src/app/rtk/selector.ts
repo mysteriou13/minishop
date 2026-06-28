@@ -7,7 +7,7 @@ import { databack, InputItem, StateInputForm } from "@/app/type";
 export default function selector() {
 
 let DataBackFromSelector = useSelector((state: RootState) => state.from.dataBack);
-let token = useSelector((state: RootState) => state.user.token);
+let token = useSelector((state: RootState) => state.user.token) || localStorage.getItem("token") ;
 let loading = useSelector((state: RootState) => state.from.loading);
 let initialDataInput = useSelector((state: RootState) => state.from.initialDataInput);
 

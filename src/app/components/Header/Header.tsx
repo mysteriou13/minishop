@@ -8,11 +8,11 @@ export default function Header() {
     name: string;
     link: string;
     typelink: string;
-  
+
   }
   const { token } = selector();
   let tab: Link[] = [
-    { name: "accueil", link: "/", typelink: "default"},
+    { name: "accueil", link: "/", typelink: "default" },
     { name: "inscription", link: "/inscription", typelink: "deconnected" },
     { name: "connection", link: "/connection", typelink: "deconnected" },
     { name: "panier", link: "/panier", typelink: "connected" },
@@ -21,8 +21,8 @@ export default function Header() {
   const [tablink, setTabLink] = useState<Link[]>(tab);
   useEffect(() => {
     setTabLink(
-      tab.filter((link) => link.typelink === "default" || 
-      (link.typelink === "connected" && token) ||
+      tab.filter((link) => link.typelink === "default" ||
+        (link.typelink === "connected" && token) ||
         (link.typelink === "deconnected" && !token))
     );
   }, [token]);
