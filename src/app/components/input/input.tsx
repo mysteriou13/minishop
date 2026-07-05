@@ -9,8 +9,9 @@ export default function Input({
   errorMessage,
 }: InputItem) {
 
- const { UpataDatainput } = selector();
-  
+ const { UpataDatainput,setDataBackSelector, DataBackFromSelector }= selector();
+ 
+ 
   return (
     <div>
       <div className="mb-4 flex flex-col gap-2">

@@ -3,6 +3,7 @@ export type StateInputForm = InputItem[][];
   export interface databack{
   name: string;
   value: string;
+  errorMessage?: string;
   }
 
 export type  LinePros = {
@@ -13,14 +14,15 @@ export type  LinePros = {
 export type fromDataArray = databack[];
 
 export interface InscriptionResponse {
-  inscriptionStatus: boolean;
-  errorEmail: string;
+  inscriptionStatus?: boolean;
+  databack?: Array<databack & { errorMessage?: string }>;
 }
 
 export interface ConnexionResponse {
   StatusUser: boolean;
   StatusPassword: boolean;
   token?: string;
+  databack?: Array<databack & { errorMessage?: string }>;
 }
 
 export interface Fromdata{

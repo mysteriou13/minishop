@@ -1,18 +1,28 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {databack,StateInputForm} from "@/app/type";
+
+type Data = {
+  name: string;
+  value: string;
+  errorMessage?: string;
+};
+
 interface FromState {
     initialDataInput: StateInputForm;
     dataBack: databack[];
     statusReponseBack: boolean;
     loading: boolean | null;
-      
+   
 }
+
+
 
 const initialState: FromState = {
     initialDataInput: [],
     dataBack: [],
     statusReponseBack: false,
     loading: false,
+
 }
 
 const slicerFrom = createSlice({
@@ -30,10 +40,11 @@ const slicerFrom = createSlice({
         },
         setInitialDataInput: (state, action) => {
             state.initialDataInput = action.payload
-        }
+        },
+   
 
     }
 })
 
-export const {setFrom, setStatusResponseBack, setLoading, setInitialDataInput } = slicerFrom.actions
+export const {setFrom, setStatusResponseBack, setLoading, setInitialDataInput,  } = slicerFrom.actions
 export default slicerFrom.reducer

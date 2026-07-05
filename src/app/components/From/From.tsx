@@ -2,20 +2,26 @@
 import { useEffect, useState } from "react";
 import LineInput from "@/app/components/LineInput/LineInput";
 import LoaadingSpinner from "@/app/components/LoadingSpinner/LoadingSpinner";
-import { FromProps, InputItem} from "@/app/type";
+import { FromProps} from "@/app/type";
 import selector from "@/app/rtk/selector";
 
 export default function From({onSubmit}: FromProps) {
   const { loading, 
     setLoadingSelector, 
-    initialDataInput } = selector(); 
-   const [formGroups, setFormGroups] = useState(
-    initialDataInput.map((line) => line.map((item) => ({ ...item }))),
-  );
+    initialDataInput,
+    DataBackFromSelector,
+    updataInputDataBackError
+  } = selector(); 
+   const [formGroups, setFormGroups] = useState(initialDataInput);
 
   useEffect(() => {
-    setFormGroups(initialDataInput.map((line) => line.map((item) => ({ ...item }))));
+    setFormGroups(initialDataInput);
   }, [initialDataInput]);
+
+  useEffect(() => {
+    updataInputDataBackError();
+  }, [DataBackFromSelector]);
+
 
   /*submit form*/
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -34,7 +40,7 @@ export default function From({onSubmit}: FromProps) {
   return (
     <div>
       <div>
-      
+          
         <form onSubmit={handleSubmit}>
              {
              loading == true ? (
