@@ -27,9 +27,7 @@ const setInitialDataInputSelector = (data: StateInputForm) => {
       [...(DataBackFromSelector || [])]
         .map((item: any) => (item.name === name ? { ...item, value, errorMessage:item.errorMessage } : item))
         .concat(
-          DataBackFromSelector?.find((item:any) => item.name === name)
-            ? []
-            : [{ name, value, errorMessage: "" }],
+          DataBackFromSelector?.find((item:any) => item.name === name)? [] : [{ name, value, errorMessage: "" }],
         ),
     );
   };
