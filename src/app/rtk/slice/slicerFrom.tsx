@@ -1,33 +1,24 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {databack,StateInputForm} from "@/app/type";
-
-type Data = {
-  name: string;
-  value: string;
-  errorMessage?: string;
-};
+import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import { databack, StateInputForm } from "@/app/type";
 
 interface FromState {
+    id: string;
     initialDataInput: StateInputForm;
     dataBack: databack[];
     statusReponseBack: boolean;
     loading: boolean | null;
-   
 }
 
-
-
-const initialState: FromState = {
-    initialDataInput: [],
-    dataBack: [],
-    statusReponseBack: false,
-    loading: false,
-
-}
+const inputAdapter = createEntityAdapter<FromState>()
 
 const slicerFrom = createSlice({
     name: 'from',
-    initialState,
+    initialState: inputAdapter.getInitialState({
+        dataBack: [],
+        statusReponseBack: false,
+        loading: false,
+        initialDataInput: [] as StateInputForm,
+    }),
     reducers: {
         setFrom: (state, action) => {
             state.dataBack = action.payload
@@ -41,10 +32,9 @@ const slicerFrom = createSlice({
         setInitialDataInput: (state, action) => {
             state.initialDataInput = action.payload
         },
-   
+    },
 
-    }
 })
 
-export const {setFrom, setStatusResponseBack, setLoading, setInitialDataInput,  } = slicerFrom.actions
+export const { setFrom, setStatusResponseBack, setLoading, setInitialDataInput } = slicerFrom.actions
 export default slicerFrom.reducer

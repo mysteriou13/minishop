@@ -6,7 +6,7 @@ import { InputItem, StateInputForm } from "@/app/type";
 
 export default function selector() {
 let DataBackFromSelector = useSelector((state: RootState) => state.from.dataBack);
-let token = useSelector((state: RootState) => state.user.token)  || localStorage.getItem("token");
+let token = useSelector((state: RootState) => state.user.token)  || localStorage.getItem("token")||'';
 let loading = useSelector((state: RootState) => state.from.loading);
 let initialDataInput = useSelector((state: RootState) => state.from.initialDataInput);
 const dispatch = useDispatch();
@@ -25,9 +25,9 @@ const setInitialDataInputSelector = (data: StateInputForm) => {
   const AddHandleDataBack = (name: string, value: string) => {
     setDataBackSelector(
       [...(DataBackFromSelector || [])]
-        .map((item) => (item.name === name ? { ...item, value, errorMessage:item.errorMessage } : item))
+        .map((item: any) => (item.name === name ? { ...item, value, errorMessage:item.errorMessage } : item))
         .concat(
-          DataBackFromSelector?.find((item) => item.name === name)
+          DataBackFromSelector?.find((item:any) => item.name === name)
             ? []
             : [{ name, value, errorMessage: "" }],
         ),
@@ -49,12 +49,18 @@ const setInitialDataInputSelector = (data: StateInputForm) => {
      const updataInputDataBackError = () => {
       if (DataBackFromSelector) {
         setDataBackSelector(DataBackFromSelector);
+         const dataBack = DataBackFromSelector as Array<{
+          name: string;
+          value: string;
+          errorMessage?: string;
+         }>;
   
-         const updatedInitialDataInput = initialDataInput.map((group) =>
-          group.map((input) => ({
+         const updatedInitialDataInput = initialDataInput.map((group:any) =>
+          group.map((input: any) => ({
             ...input,
-            errorMessage: DataBackFromSelector.find((item: any) => item.name === input.name)
-              ?.errorMessage,
+              errorMessage:
+                dataBack.find((item) => item.name === input.name)
+                  ?.errorMessage ?? "",
           })),
         );
         setInitialDataInputSelector(updatedInitialDataInput);
