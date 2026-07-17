@@ -22,7 +22,6 @@ export default function connection() {
       redirect("/"); // Redirection vers la page d'accueil
     }
 
-
   }, []);
 
   const handleSubmit = async () => {
