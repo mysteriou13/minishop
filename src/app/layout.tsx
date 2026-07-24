@@ -19,9 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Provide>
-          <Header />
+          
           {children}
-          <Footer />
+         
         </Provide>
       </body>
     </html>

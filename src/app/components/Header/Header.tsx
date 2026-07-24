@@ -19,7 +19,7 @@ export default function Header() {
     { name: "inscription", link: "/inscription", typelink: "deconnected", icon: <FaUser /> },
     { name: "connection", link: "/connection", typelink: "deconnected", icon: <FaUser /> },
     { name: "panier", link: "/panier", typelink: "connected", icon: <FaBasketShopping /> },
-    { name: "profil", link: "/profil", typelink: "connected", icon: <FaUser /> },
+    { name: "profil", link: "/displayprofil", typelink: "connected", icon: <FaUser /> },
     { name: "déconnection", link: "/deconnection", typelink: "connected", icon: <FaUserSlash /> }
   ];
   const [tablink, setTabLink] = useState<Link[]>(tab);

@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
-import selector from "../rtk/selector";
+import selector from "@/app/rtk/selector";
 
 export default function page() {
   const { setTokenSelector } = selector();

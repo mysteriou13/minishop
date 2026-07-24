@@ -1,9 +1,11 @@
 "use client";
 import { useProfileUserQuery } from "@/app/rtk/api/apiUser";
+import Link from "next/link";
 import selector from "@/app/rtk/selector";
 import { useEffect } from "react";
 import LoadingSpinner from "@/app/components/LoadingSpinner/LoadingSpinner";
 import { useRouter } from "next/navigation";
+import NavLinkUser from "@/app/components/NavLinkUser/NavLinkUser";
 export default function Profil() {
   const router = useRouter();
   const { token } = selector();
@@ -17,7 +19,11 @@ export default function Profil() {
 
   return (
     <div>
-      <h1>Profil</h1>
+      <div>
+        <div>
+         
+        </div>
+      </div>
       {isLoading ? (
         <LoadingSpinner />
       ) : (
